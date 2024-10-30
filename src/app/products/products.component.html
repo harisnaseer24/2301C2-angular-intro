@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4" *ngFor="let item of products" >
+            <div class="card" *ngIf ="item.qty >1">
+                <img src="{{item.image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.name}}
+                     <span class="badge text-bg-danger" *ngIf="item.price <= 1000">SALE 20% Off</span>
+                     <span class="badge text-bg-primary" *ngIf="item.price >= 1000 && item.price <2000">SALE 10% Off</span>
+                     <span class="badge text-bg-secondary"*ngIf="item.price >=2000">SALE ENDED</span>
+                     <span class="badge text-bg-warning"*ngIf="item.qty < 1">OUT OF STOCK</span>
+                    </h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">$ {{item.price}}  </a>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
