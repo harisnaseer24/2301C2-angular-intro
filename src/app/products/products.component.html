@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-4" *ngFor="let item of products" >
+        <!-- <div class="col-lg-4" *ngFor="let item of products" >
             <div class="card" *ngIf ="item.qty >1">
                 <img src="{{item.image}}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -14,6 +14,71 @@
                   <a href="#" class="btn btn-primary">$ {{item.price}}  </a>
                 </div>
               </div>
-        </div>
+        </div> -->
+@for(item of products; track $index){
+
+  <div class="col-lg-4 my-2">
+    <div class="card" >
+      <img src="{{item.image}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{item.name  }} {{$index +1}}
+          @if(item.price <=1000){
+
+            <span class="badge text-bg-danger mx-1" >SALE 20% Off</span>
+          }@else if(item.price >1000 && item.price <=2000){
+
+            <span class="badge text-bg-primary mx-1" >SALE 10% Off</span>
+          }@else if(item.price > 2000){
+
+            <span class="badge text-bg-secondary mx-1">SALE ENDED</span>
+          }
+
+          @if(item.qty >10){
+
+            <span class="badge text-bg-success mx-1">Available</span>
+          }
+          @else if(item.qty < 10 && item.qty >1){
+            <span class="badge text-bg-warning mx-1">Low on stock</span>
+            
+          }@else if(item.qty < 1){
+            <span class="badge text-bg-danger mx-1">Out of Stock</span>
+            
+          }
+
+          </h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary mx-1">$ {{item.price}}  </a>
+      </div>
+    </div>
+  </div>
+}
+
     </div>
 </div>
+
+<input type="number" [(ngModel)]="myNum">
+@switch(myNum){
+@case(1){
+<h3>Today is monday</h3>
+}
+@case(2){
+  <h3>Today is tuesday</h3>
+  }
+  @case(3){
+    <h3>Today is wednesday</h3>
+    }
+    @case(4){
+      <h3>Today is thursday</h3>
+      }
+      @case(5){
+        <h3>Today is friday</h3>
+      }
+      @default{
+        
+        <h3 class="text-danger">
+          Invalid number
+        </h3>
+        }
+
+
+}
